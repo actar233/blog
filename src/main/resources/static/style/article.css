@@ -1,0 +1,8 @@
+.article{
+    width: 60%;
+    margin-top: 20px;
+}
+
+.article img{
+    max-width: 100%;
+}

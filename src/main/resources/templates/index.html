@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>4URL</title>
+    <link rel="stylesheet" type="text/css" href="/style/style.css"/>
+</head>
+
+<body>
+<div class="head">
+    <div class="menu">
+        <a selected href="#">
+            <div style="margin-right: 10px">
+                <img class="avatar-30" src="/avatar.jpg">
+            </div>
+            主页
+        </a>
+        <a href="/articles">文章</a>
+        <a href="/tags">分类</a>
+        <a href="/links.html">友链</a>
+        <!--<a href="/about.html">关于</a>-->
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="content width-60">
+    <div class="content-article-list width-75">
+        <div class="title">
+            Post
+        </div>
+        <div class="article-list">
+            <!--/*@thymesVar id="markdowns" type="java.util.List<io.github.actar676309180.blog.Markdown>"*/-->
+            <div th:each="markdown:${markdowns}" class="item" >
+                <a th:href="${markdown.mapping}" th:text="${markdown.title}" target="_blank" rel="noopener noreferrer">这是一个测试</a>
+                <span th:text="${markdown.time}">2018-8-10</span>
+            </div>
+        </div>
+    </div>
+    <div class="content-article-category">
+        <div class="title">
+            Tags:
+        </div>
+        <!--/*@thymesVar id="tags" type="java.util.List<java.lang.String>"*/-->
+        <div th:each="tag:${tags}" class="item">
+            <a href="#" th:text="${tag}" th:href="@{'/tags/'+${tag}}">Java</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

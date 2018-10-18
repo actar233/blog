@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>4URL</title>
+    <link rel="stylesheet" type="text/css" href="/style/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/style/article.css"/>
+    <script type="text/javascript" src="/js/showdown.min.js"></script>
+    <script type="text/javascript" src="/js/article.js"></script>
+</head>
+<body>
+<div class="head">
+    <div class="menu">
+        <a href="/">
+            <div style="margin-right: 10px">
+                <img class="avatar-30" src="/avatar.jpg">
+            </div>
+            主页
+        </a>
+        <a selected href="/articles">文章</a>
+        <a href="/tags">分类</a>
+        <a href="/links.html">友链</a>
+        <!--<a href="/about.html">关于</a>-->
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="content width-60">
+    <!--/*@thymesVar id="markdown" type="java.lang.String"*/-->
+    <pre th:text="${markdown}" id="article-markdown" style="display: none;">
+
+    </pre>
+    <div class="article">
+
+    </div>
+</div>
+</body>
+</html>

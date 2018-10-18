@@ -1,0 +1,211 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: #f0f0f0;
+}
+
+::selection {
+    color: #fff;
+    background: #000;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px dotted #000;
+}
+
+a:hover {
+    border-bottom: 1px solid #000;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.head {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.head .menu {
+    width: 60%;
+    height: 100%;
+    background-color: white;
+    box-shadow: 2px 2px 2px gray;
+    display: flex;
+    justify-content: center;
+}
+
+/* size30 圆形 */
+.avatar-30 {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+/* 按钮项 */
+.head .menu a {
+    display: flex;
+    float: left;
+    width: 100px;
+    height: 100%;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border: 0;
+}
+
+/* 按钮项 选中 */
+.head .menu [selected] {
+    color: white;
+    background-color: #969baf;
+}
+
+/* 按钮项 选中 */
+.head .menu a:hover {
+    color: white;
+    background-color: #969baf;
+}
+
+/* 清除浮动 */
+.clear {
+    clear: both;
+}
+
+/* 内容 */
+.content {
+    width: 60%;
+    padding-bottom: 50px;
+    margin-top: 10px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 2px 2px 2px gray;
+}
+.content .post{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.content .post .title{
+    margin-top: 20px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.content .post .message{
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+.width-75{
+    width: 75%;
+}
+.width-100{
+    width: 100%;
+}
+
+.content-article-list {
+    /*width: 75%;*/
+    padding-top: 30px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.content-article-list .title {
+    width: 70%;
+    padding: 0 30px 3px 30px;
+    margin: 6px 0;
+    font-size: 1.5em;
+    line-height: 1.2em;
+    border-bottom: 1px solid #000;
+}
+
+.content-article-list .article-list {
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.content-article-list .article-list .item {
+    width: 70%;
+    padding: 0 30px 3px 30px;
+    margin: 6px 0;
+    line-height: 1.5;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.content-article-list .article-list .item a {
+    word-wrap:break-word;
+}
+
+.content-article-category {
+    width: 25%;
+    padding-top: 70px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.content-article-category .title {
+    width: 80%;
+    font-size: 1.2em;
+    margin: 6px 0;
+}
+
+.content-article-category .item {
+    width: 80%;
+    margin: 6px 0;
+}
+
+.content-article-category-row {
+    width: 70%;
+    margin-top: 40px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.content-article-category-row .title {
+    font-size: 1.5em;
+    margin: 0 20px 15px 0;
+}
+
+.content-article-category-row .item {
+    font-size: 1.2em;
+    margin: 0 20px 15px 0;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin-top: 20px;
+    margin-right: 5px;
+    font-size: 1.15em;
+}
+.pagination a[display] {
+    border: 0;
+}
+.pagination a[selected] {
+    border: 0;
+    color: gray;
+}
