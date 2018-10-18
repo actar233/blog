@@ -16,6 +16,7 @@ import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,9 +25,9 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 public class Markdown implements Comparable<Markdown> {
-    private static Pattern titlePattern = Pattern.compile("\\[@Title\\]:<>\\((.*)\\)");
-    private static Pattern datePattern = Pattern.compile("\\[@Date\\]:<>\\((.*)\\)");
-    private static Pattern tagsPattern = Pattern.compile("\\[@Tags\\]:<>\\((.*)\\)");
+    private static Pattern titlePattern = Pattern.compile("\\[@Title]:<>\\((.*)\\)");
+    private static Pattern datePattern = Pattern.compile("\\[@Date]:<>\\((.*)\\)");
+    private static Pattern tagsPattern = Pattern.compile("\\[@Tags]:<>\\((.*)\\)");
 
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -53,7 +54,7 @@ public class Markdown implements Comparable<Markdown> {
         return other.date.compareTo(this.date);
     }
 
-    public static Markdown parse(String text) throws ParseException {
+    private static Markdown parse(String text) throws ParseException {
         Markdown markdown = new Markdown();
         markdown.html = markdown2HTML(text);
         markdown.title = matcher(text, titlePattern, "Title");
@@ -62,17 +63,17 @@ public class Markdown implements Comparable<Markdown> {
         return markdown;
     }
 
-    public static String markdown2HTML(String markdown){
+    private static String markdown2HTML(String markdown){
         MutableDataSet options = new MutableDataSet();
         options.setFrom(ParserEmulationProfile.MARKDOWN);
-        options.set(Parser.EXTENSIONS, Arrays.asList(new Extension[] { TablesExtension.create()}));
+        options.set(Parser.EXTENSIONS, Collections.singletonList(TablesExtension.create()));
         Parser parser = Parser.builder(options).build();
         HtmlRenderer renderer = HtmlRenderer.builder(options).build();
         Node document = parser.parse(markdown);
         return renderer.render(document);
     }
 
-    public static Markdown parse(File file) {
+    static Markdown parse(File file) {
         String text = null;
         try {
             text = new BufferedReader(new InputStreamReader(new FileInputStream(file))).lines().collect(Collectors.joining(System.lineSeparator()));
