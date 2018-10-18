@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>分类标签</title>
-    <link rel="stylesheet" type="text/css" href="style/style.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
 </head>
 <body>
 <div class="head">
     <div class="menu">
         <a href="/">
             <div style="margin-right: 10px">
-                <img class="avatar-30" src="/avatar.jpg">
+                <img class="avatar-30" th:src="@{/avatar.jpg}">
             </div>
             主页
         </a>
-        <a href="/articles">文章</a>
+        <a th:href="@{/articles}">文章</a>
         <a selected href="#">分类</a>
-        <a href="links.html">友链</a>
+        <a th:href="@{links.html}">友链</a>
         <!--<a href="about.html">关于</a>-->
         <div class="clear"></div>
     </div>
