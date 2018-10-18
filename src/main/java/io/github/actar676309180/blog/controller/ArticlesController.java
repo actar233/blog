@@ -17,8 +17,12 @@ import java.util.List;
 @Controller
 public class ArticlesController {
 
+    private final MarkdownService markdownService;
+
     @Autowired
-    private MarkdownService markdownService;
+    public ArticlesController(MarkdownService markdownService) {
+        this.markdownService = markdownService;
+    }
 
     @GetMapping("/articles")
     public String articles(Model model) {
@@ -38,7 +42,7 @@ public class ArticlesController {
             if (page.check()) {
                 setModel(page, model);
             } else {
-                return "404.html";
+                return "/error/404.html";
             }
         }
 
@@ -71,10 +75,10 @@ public class ArticlesController {
         try {
             uri = java.net.URLDecoder.decode(uri, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            return "404.html";
+            return "/error/404.html";
         }
         if (!markdownService.pathMapping.containsKey(uri)) {
-            return "404.html";
+            return "/error/404.html";
         }
         Markdown markdown = markdownService.pathMapping.get(uri);
         model.addAttribute("markdown", markdown.getMarkdown());

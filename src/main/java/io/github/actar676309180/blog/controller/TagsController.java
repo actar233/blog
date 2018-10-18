@@ -15,8 +15,12 @@ import java.util.Set;
 @Controller
 public class TagsController {
 
+    private final MarkdownService markdownService;
+
     @Autowired
-    private MarkdownService markdownService;
+    public TagsController(MarkdownService markdownService) {
+        this.markdownService = markdownService;
+    }
 
     @GetMapping("/tags")
     public String tags(Model model){
@@ -37,7 +41,7 @@ public class TagsController {
     public String articles(@PathVariable("tag") String tag,@PathVariable("index") Integer index, Model model) {
 
         if (!markdownService.tags.containsKey(tag)){
-            return "404.html";
+            return "/error/404.html";
         }
 
         List<Markdown> markdowns = markdownService.tags.get(tag);
@@ -50,7 +54,7 @@ public class TagsController {
             if (page.check()) {
                 setModel(page, model);
             } else {
-                return "404.html";
+                return "/error/404.html";
             }
         }
 
