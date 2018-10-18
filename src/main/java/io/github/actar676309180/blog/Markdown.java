@@ -1,5 +1,12 @@
 package io.github.actar676309180.blog;
 
+import com.vladsch.flexmark.Extension;
+import com.vladsch.flexmark.ast.Node;
+import com.vladsch.flexmark.ext.tables.TablesExtension;
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
+import com.vladsch.flexmark.parser.ParserEmulationProfile;
+import com.vladsch.flexmark.util.options.MutableDataSet;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +34,7 @@ public class Markdown implements Comparable<Markdown> {
     String title;
     Date date;
     String[] tags;
-    String markdown;
+    String html;
 
     String mapping;
     String time;
@@ -48,11 +55,21 @@ public class Markdown implements Comparable<Markdown> {
 
     public static Markdown parse(String text) throws ParseException {
         Markdown markdown = new Markdown();
-        markdown.markdown = text;
+        markdown.html = markdown2HTML(text);
         markdown.title = matcher(text, titlePattern, "Title");
         markdown.date = format.parse(matcher(text, datePattern, "Date"));
         markdown.tags = matcher(text, tagsPattern, "Tags").split(",");
         return markdown;
+    }
+
+    public static String markdown2HTML(String markdown){
+        MutableDataSet options = new MutableDataSet();
+        options.setFrom(ParserEmulationProfile.MARKDOWN);
+        options.set(Parser.EXTENSIONS, Arrays.asList(new Extension[] { TablesExtension.create()}));
+        Parser parser = Parser.builder(options).build();
+        HtmlRenderer renderer = HtmlRenderer.builder(options).build();
+        Node document = parser.parse(markdown);
+        return renderer.render(document);
     }
 
     public static Markdown parse(File file) {

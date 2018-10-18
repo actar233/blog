@@ -30,11 +30,50 @@
     margin-bottom: 15px;
 }
 
-.article a{
+.article a {
     margin-left: 3px;
     margin-right: 3px;
 }
 
 .article img {
     max-width: 100%;
+}
+
+.article table {
+    max-width: 100%;
+    border-collapse: collapse;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.article table thead, tbody {
+    max-width: 100%;
+}
+
+.article table tr {
+    border: 0;
+}
+
+.article table th, td {
+    height: 32px;
+    max-width: 100%;
+    line-height: 2.0;
+    font-size: 13px;
+    padding: 5px 14px 5px 12px;
+    min-width: 40px;
+}
+
+.article table th {
+    padding-top: 6px;
+    border: 1px solid #72777b;
+    border-top: 0;
+    font-weight: 300;
+    background-color: #7b8184;
+    color: #fff;
+}
+
+.article table td {
+    border: 1px solid #eaeaea;
+    box-sizing: content-box;
+    color: #555;
 }
