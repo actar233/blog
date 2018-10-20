@@ -15,10 +15,14 @@ import java.io.FileFilter;
 @Configuration
 public class ScanMarkdown implements CommandLineRunner {
 
-    @Autowired
-    private MarkdownService markdownService;
+    private final MarkdownService markdownService;
 
     private boolean isLoading = false;
+
+    @Autowired
+    public ScanMarkdown(MarkdownService markdownService) {
+        this.markdownService = markdownService;
+    }
 
     public void listener() throws Exception {
         String filePath = "markdown/";
@@ -58,8 +62,10 @@ public class ScanMarkdown implements CommandLineRunner {
     }
 
     private void scan() {
-        if (isLoading) {
-            return;
+        synchronized (this){
+            if (isLoading) {
+                return;
+            }
         }
         isLoading = true;
         markdownService.reload();
