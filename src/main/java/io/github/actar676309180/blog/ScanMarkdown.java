@@ -8,16 +8,20 @@ import org.apache.commons.io.monitor.FileAlterationObserver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileFilter;
 
 @Configuration
+@Component
 public class ScanMarkdown implements CommandLineRunner {
 
     private final MarkdownService markdownService;
 
     private boolean isLoading = false;
+
+    private boolean scan = true;
 
     @Autowired
     public ScanMarkdown(MarkdownService markdownService) {
@@ -42,16 +46,20 @@ public class ScanMarkdown implements CommandLineRunner {
 
             @Override
             public void onFileChange(File file) {
+                if (!scan) return;
+
                 scan();
             }
 
             @Override
             public void onFileCreate(File file) {
+                if (!scan) return;
                 scan();
             }
 
             @Override
             public void onFileDelete(File file) {
+                if (!scan) return;
                 scan();
             }
 
@@ -61,8 +69,8 @@ public class ScanMarkdown implements CommandLineRunner {
         filealterationMonitor.start();
     }
 
-    private void scan() {
-        synchronized (this){
+    public void scan() {
+        synchronized (this) {
             if (isLoading) {
                 return;
             }
@@ -75,5 +83,14 @@ public class ScanMarkdown implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         listener();
+    }
+
+
+    public boolean isScan() {
+        return scan;
+    }
+
+    public void setScan(boolean scan) {
+        this.scan = scan;
     }
 }
