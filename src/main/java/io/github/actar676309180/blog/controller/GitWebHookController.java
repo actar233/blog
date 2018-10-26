@@ -23,7 +23,7 @@ public class GitWebHookController {
         this.blogConfig = blogConfig;
     }
 
-    @RequestMapping({"/git/target", "/github/target/{token}"})
+    @RequestMapping({"/git/target", "/git/target/{token}"})
     public void hook(@PathVariable(value = "token", required = false) String token) {
         if (blogConfig.getGit() == null) return;
         if (!(blogConfig.getToken() == null || blogConfig.getToken().equals(token))) return;
@@ -51,9 +51,11 @@ public class GitWebHookController {
 
     private void deletes(File file) {
 
-        if (file.isFile())
+        if (file.isFile()) {
             //noinspection ResultOfMethodCallIgnored
             file.delete();
+            return;
+        }
 
         File[] files = file.listFiles();
 
