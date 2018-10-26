@@ -10,7 +10,8 @@
     <div class="menu">
         <a href="/">
             <div style="margin-right: 10px">
-                <img class="avatar-30" th:src="@{/avatar.jpg}">
+                <!--suppress HtmlUnknownTarget -->
+                <img class="avatar-30" src="/avatar.jpg">
             </div>
             主页
         </a>
@@ -27,7 +28,7 @@
             Post
         </div>
         <div class="article-list">
-            <!--/*@thymesVar id="markdowns" type="java.util.List<io.github.actar676309180.blog.Markdown>"*/-->
+            <!--/*@thymesVar id="markdowns" type="java.util.List<io.github.actar676309180.blog.utils.Markdown>"*/-->
             <div th:each="markdown:${markdowns}" class="item">
                 <a th:href="${markdown.mapping}" th:text="${markdown.title}" target="_blank" rel="noopener noreferrer">这是一个测试</a>
                 <span th:text="${markdown.time}">2018/8/10</span>

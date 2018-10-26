@@ -1,7 +1,7 @@
 package io.github.actar676309180.blog.controller;
 
-import io.github.actar676309180.blog.Markdown;
-import io.github.actar676309180.blog.MarkdownService;
+import io.github.actar676309180.blog.utils.Markdown;
+import io.github.actar676309180.blog.service.MarkdownService;
 import io.github.actar676309180.blog.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

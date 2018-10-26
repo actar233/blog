@@ -1,4 +1,4 @@
-package io.github.actar676309180.blog;
+package io.github.actar676309180.blog.config;
 
 import org.springframework.stereotype.Component;
 

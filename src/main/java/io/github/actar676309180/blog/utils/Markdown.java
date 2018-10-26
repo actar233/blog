@@ -1,13 +1,11 @@
-package io.github.actar676309180.blog;
+package io.github.actar676309180.blog.utils;
 
-import com.vladsch.flexmark.Extension;
 import com.vladsch.flexmark.ast.Node;
 import com.vladsch.flexmark.ext.tables.TablesExtension;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.parser.ParserEmulationProfile;
 import com.vladsch.flexmark.util.options.MutableDataSet;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,13 +30,13 @@ public class Markdown implements Comparable<Markdown> {
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 
-    String title;
-    Date date;
-    String[] tags;
-    String html;
+    private String title;
+    private Date date;
+    private String[] tags;
+    private String html;
 
-    String mapping;
-    String time;
+    private String mapping;
+    private String time;
 
     @Override
     public String toString() {
@@ -73,7 +71,7 @@ public class Markdown implements Comparable<Markdown> {
         return renderer.render(document);
     }
 
-    static Markdown parse(File file) {
+    public static Markdown parse(File file) {
         String text = null;
         try {
             text = new BufferedReader(new InputStreamReader(new FileInputStream(file))).lines().collect(Collectors.joining(System.lineSeparator()));

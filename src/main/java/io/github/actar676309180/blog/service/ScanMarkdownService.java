@@ -1,5 +1,6 @@
-package io.github.actar676309180.blog;
+package io.github.actar676309180.blog.service;
 
+import io.github.actar676309180.blog.service.MarkdownService;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
@@ -15,7 +16,7 @@ import java.io.FileFilter;
 
 @Configuration
 @Component
-public class ScanMarkdown implements CommandLineRunner {
+public class ScanMarkdownService implements CommandLineRunner {
 
     private final MarkdownService markdownService;
 
@@ -24,7 +25,7 @@ public class ScanMarkdown implements CommandLineRunner {
     private boolean scan = true;
 
     @Autowired
-    public ScanMarkdown(MarkdownService markdownService) {
+    public ScanMarkdownService(MarkdownService markdownService) {
         this.markdownService = markdownService;
     }
 

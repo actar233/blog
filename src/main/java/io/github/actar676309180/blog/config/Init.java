@@ -1,5 +1,6 @@
-package io.github.actar676309180.blog;
+package io.github.actar676309180.blog.config;
 
+import io.github.actar676309180.blog.service.MarkdownService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -7,11 +8,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class Init implements CommandLineRunner {
 
+    private final MarkdownService markdownService;
+
     @Autowired
-    private MarkdownService markdownService;
+    public Init(MarkdownService markdownService) {
+        this.markdownService = markdownService;
+    }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         try{
             markdownService.load();
         }catch (Exception e){

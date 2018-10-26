@@ -1,6 +1,6 @@
 package io.github.actar676309180.blog.controller;
 
-import io.github.actar676309180.blog.MarkdownService;
+import io.github.actar676309180.blog.service.MarkdownService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MarkdownController {
 
+    private final MarkdownService markdownService;
+
     @Autowired
-    private MarkdownService markdownService;
+    public MarkdownController(MarkdownService markdownService) {
+        this.markdownService = markdownService;
+    }
 
     @GetMapping("/reload")
     public String reload(){

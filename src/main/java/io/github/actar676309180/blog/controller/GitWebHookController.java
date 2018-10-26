@@ -1,7 +1,7 @@
 package io.github.actar676309180.blog.controller;
 
-import io.github.actar676309180.blog.BlogConfig;
-import io.github.actar676309180.blog.ScanMarkdown;
+import io.github.actar676309180.blog.config.BlogConfig;
+import io.github.actar676309180.blog.service.ScanMarkdownService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,15 +11,15 @@ import java.io.IOException;
 @RestController
 public class GitWebHookController {
 
-    private final ScanMarkdown scanMarkdown;
+    private final ScanMarkdownService scanMarkdownService;
 
     private final String tempDir = System.getProperty("java.io.tmpdir");
 
     private final BlogConfig blogConfig;
 
     @Autowired
-    public GitWebHookController(ScanMarkdown scanMarkdown, BlogConfig blogConfig) {
-        this.scanMarkdown = scanMarkdown;
+    public GitWebHookController(ScanMarkdownService scanMarkdown, BlogConfig blogConfig) {
+        this.scanMarkdownService = scanMarkdown;
         this.blogConfig = blogConfig;
     }
 
@@ -27,7 +27,7 @@ public class GitWebHookController {
     public void hook(@PathVariable(value = "token", required = false) String token) {
         if (blogConfig.getGit() == null) return;
         if (!(blogConfig.getToken() == null || blogConfig.getToken().equals(token))) return;
-        scanMarkdown.setScan(false);
+        scanMarkdownService.setScan(false);
 
         File tempBlogDir = new File(tempDir, "blog");
 
@@ -44,9 +44,9 @@ public class GitWebHookController {
                 tempMarkdown.renameTo(markdown);
             }
             deletes(tempBlogDir);
-            scanMarkdown.scan();
+            scanMarkdownService.scan();
         }
-        scanMarkdown.setScan(true);
+        scanMarkdownService.setScan(true);
     }
 
     private void deletes(File file) {

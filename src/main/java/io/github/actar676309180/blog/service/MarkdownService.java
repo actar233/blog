@@ -1,5 +1,6 @@
-package io.github.actar676309180.blog;
+package io.github.actar676309180.blog.service;
 
+import io.github.actar676309180.blog.utils.Markdown;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -37,11 +38,11 @@ public class MarkdownService {
         }
     }
 
-    public List<Markdown> loadMarkdowns() {
+    private List<Markdown> loadMarkdowns() {
         List<Markdown> markdowns = new ArrayList<>();
         File markdown = new File("markdown");
         requiredDirectory(markdown);
-        List<File> mds = new ArrayList<File>();
+        List<File> mds = new ArrayList<>();
         findMarkdownFile(markdown, mds);
         for (File md : mds) {
             markdowns.add(Markdown.parse(md));
@@ -50,17 +51,17 @@ public class MarkdownService {
         return markdowns;
     }
 
-    public Map<String, List<Markdown>> generateTags(List<Markdown> markdowns) {
+    private Map<String, List<Markdown>> generateTags(List<Markdown> markdowns) {
         Map<String, List<Markdown>> tags = new HashMap<>();
         for (Markdown markdown : markdowns) {
-            for (String tag : markdown.tags) {
+            for (String tag : markdown.getTags()) {
                 handTags(tags, tag, markdown);
             }
         }
         return tags;
     }
 
-    public void handTags(Map<String, List<Markdown>> tags, String tag, Markdown markdown) {
+    private void handTags(Map<String, List<Markdown>> tags, String tag, Markdown markdown) {
         if (tags.containsKey(tag)) {
             List<Markdown> list = tags.get(tag);
             list.add(markdown);
@@ -71,13 +72,13 @@ public class MarkdownService {
         }
     }
 
-    public Map<String, Markdown> generatePathMapping(List<Markdown> markdowns) {
+    private Map<String, Markdown> generatePathMapping(List<Markdown> markdowns) {
         Map<String, Markdown> pathMapping = new HashMap<>();
         for (Markdown markdown : markdowns) {
             String mapping = generatePath(markdown);
-            markdown.mapping = mapping;
+            markdown.setMapping(mapping);
 
-            markdown.time = MessageFormat.format("{0,date,yyyy-MM-dd}", markdown.date);
+            markdown.setTime(MessageFormat.format("{0,date,yyyy-MM-dd}", markdown.getDate()));
 
             pathMapping.put(mapping, markdown);
         }
@@ -86,11 +87,11 @@ public class MarkdownService {
 
     private String generatePath(Markdown markdown) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(markdown.date);
+        calendar.setTime(markdown.getDate());
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH) + 1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        String result = MessageFormat.format("/articles/{0}/{1}/{2}/{3}.html", String.valueOf(year), String.valueOf(month), String.valueOf(day), markdown.title);
+        String result = MessageFormat.format("/articles/{0}/{1}/{2}/{3}.html", String.valueOf(year), String.valueOf(month), String.valueOf(day), markdown.getTitle());
         return result.replace(" ", "_");
     }
 

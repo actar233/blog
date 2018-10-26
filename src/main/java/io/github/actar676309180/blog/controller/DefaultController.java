@@ -1,7 +1,7 @@
 package io.github.actar676309180.blog.controller;
 
-import io.github.actar676309180.blog.Markdown;
-import io.github.actar676309180.blog.MarkdownService;
+import io.github.actar676309180.blog.utils.Markdown;
+import io.github.actar676309180.blog.service.MarkdownService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +13,12 @@ import java.util.List;
 @Controller
 public class DefaultController {
 
+    private final MarkdownService markdownService;
+
     @Autowired
-    private MarkdownService markdownService;
+    public DefaultController(MarkdownService markdownService) {
+        this.markdownService = markdownService;
+    }
 
     @GetMapping({"/","/index.html"})
     public String index(Model model){
