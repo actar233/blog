@@ -1,5 +1,6 @@
 package io.github.actar676309180.blog.config;
 
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -12,7 +13,9 @@ public class BlogConfig {
 
     private Properties properties;
 
+    @Getter
     private String git;
+    @Getter
     private String token;
 
     BlogConfig(){
@@ -30,13 +33,5 @@ public class BlogConfig {
     private void load(){
         git = properties.getProperty("git");
         token = properties.getProperty("token'");
-    }
-
-    public String getGit() {
-        return git;
-    }
-
-    public String getToken() {
-        return token;
     }
 }
