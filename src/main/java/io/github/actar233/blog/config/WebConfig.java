@@ -1,4 +1,4 @@
-package io.github.actar676309180.blog.config;
+package io.github.actar233.blog.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

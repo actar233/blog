@@ -1,6 +1,6 @@
-package io.github.actar676309180.blog.config;
+package io.github.actar233.blog.config;
 
-import io.github.actar676309180.blog.service.MarkdownService;
+import io.github.actar233.blog.service.MarkdownService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

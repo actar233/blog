@@ -1,4 +1,4 @@
-package io.github.actar676309180.blog.utils;
+package io.github.actar233.blog.utils;
 
 import com.vladsch.flexmark.ast.Node;
 import com.vladsch.flexmark.ext.tables.TablesExtension;

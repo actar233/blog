@@ -1,4 +1,4 @@
-package io.github.actar676309180.blog.utils;
+package io.github.actar233.blog.utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class Page {
     }
 
     public List<Integer> fromPage() {
-        List<Integer> list = new ArrayList();
+        List<Integer> list = new ArrayList<>();
         for (int i = fromPage; i < currentPage; i++) {
             list.add(i);
         }
@@ -54,7 +54,7 @@ public class Page {
     }
 
     public List<Integer> toPage() {
-        List<Integer> list = new ArrayList();
+        List<Integer> list = new ArrayList<>();
         for (int i = currentPage + 1; i <= toPage; i++) {
             list.add(i);
         }

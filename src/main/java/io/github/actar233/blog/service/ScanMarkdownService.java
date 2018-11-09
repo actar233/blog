@@ -1,4 +1,4 @@
-package io.github.actar676309180.blog.service;
+package io.github.actar233.blog.service;
 
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.IOFileFilter;
@@ -74,8 +74,8 @@ public class ScanMarkdownService implements CommandLineRunner {
             if (isLoading) {
                 return;
             }
+            isLoading = true;
         }
-        isLoading = true;
         markdownService.reload();
         isLoading = false;
     }

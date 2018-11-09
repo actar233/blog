@@ -1,7 +1,7 @@
-package io.github.actar676309180.blog.controller;
+package io.github.actar233.blog.controller;
 
-import io.github.actar676309180.blog.config.BlogConfig;
-import io.github.actar676309180.blog.service.ScanMarkdownService;
+import io.github.actar233.blog.config.BlogConfig;
+import io.github.actar233.blog.service.ScanMarkdownService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
