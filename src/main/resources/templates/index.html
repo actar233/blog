@@ -29,7 +29,7 @@
             Post
         </div>
         <div class="article-list">
-            <!--/*@thymesVar id="markdowns" type="java.util.List<io.github.actar676309180.blog.utils.Markdown>"*/-->
+            <!--/*@thymesVar id="markdowns" type="java.util.List<io.github.actar233.blog.utils.Markdown>"*/-->
             <div th:each="markdown:${markdowns}" class="item" >
                 <a th:href="${markdown.mapping}" th:text="${markdown.title}" target="_blank" rel="noopener noreferrer">这是一个测试</a>
                 <span th:text="${markdown.time}">2018-8-10</span>

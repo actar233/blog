@@ -15,6 +15,7 @@ public class BlogConfig {
 
     @Getter
     private String git;
+
     @Getter
     private String token;
 
@@ -32,6 +33,6 @@ public class BlogConfig {
 
     private void load(){
         git = properties.getProperty("git");
-        token = properties.getProperty("token'");
+        token = properties.getProperty("token");
     }
 }

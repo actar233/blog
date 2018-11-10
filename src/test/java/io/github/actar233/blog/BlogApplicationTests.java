@@ -1,4 +1,4 @@
-package io.github.actar676309180.blog;
+package io.github.actar233.blog;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
