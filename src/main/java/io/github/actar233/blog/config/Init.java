@@ -17,9 +17,9 @@ public class Init implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        try{
+        try {
             markdownService.load();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.exit(0);
         }

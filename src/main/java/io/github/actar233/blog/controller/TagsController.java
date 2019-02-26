@@ -23,24 +23,24 @@ public class TagsController {
     }
 
     @GetMapping("/tags")
-    public String tags(Model model){
+    public String tags(Model model) {
 
         Set<String> tags = markdownService.tags.keySet();
 
-        model.addAttribute("tags",tags);
+        model.addAttribute("tags", tags);
 
         return "tags.html";
     }
 
     @GetMapping("/tags/{tag}")
     public String articles(@PathVariable("tag") String tag, Model model) {
-        return articles(tag,1, model);
+        return articles(tag, 1, model);
     }
 
     @GetMapping("/tags/{tag}/{index}")
-    public String articles(@PathVariable("tag") String tag,@PathVariable("index") Integer index, Model model) {
+    public String articles(@PathVariable("tag") String tag, @PathVariable("index") Integer index, Model model) {
 
-        if (!markdownService.tags.containsKey(tag)){
+        if (!markdownService.tags.containsKey(tag)) {
             return "/error/404.html";
         }
 
@@ -48,9 +48,9 @@ public class TagsController {
 
         //noinspection Duplicates
         if (index == null) {
-            setModel(Page.generatePage(0,markdowns.size()), model);
+            setModel(Page.generatePage(0, markdowns.size()), model);
         } else {
-            Page page = Page.generatePage(index - 1,markdowns.size());
+            Page page = Page.generatePage(index - 1, markdowns.size());
             if (page.check()) {
                 setModel(page, model);
             } else {

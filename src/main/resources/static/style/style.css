@@ -3,7 +3,7 @@
     margin: 0;
 }
 
-body{
+body {
     background-color: #f0f0f0;
 }
 
@@ -123,7 +123,8 @@ body {
     -webkit-box-shadow: 2px 2px 2px gray;
     box-shadow: 2px 2px 2px gray;
 }
-.content .post{
+
+.content .post {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -135,22 +136,23 @@ body {
     -ms-flex-align: center;
     align-items: center;
 }
-.content .post .title{
+
+.content .post .title {
     margin-top: 20px;
     font-size: 1.3em;
     font-weight: bold;
 }
 
-.content .post .message{
+.content .post .message {
     margin-top: 20px;
     font-size: 1.1em;
 }
 
-.width-75{
+.width-75 {
     width: 75%;
 }
 
-.width-100{
+.width-100 {
     width: 100%;
 }
 
@@ -206,9 +208,8 @@ body {
 }
 
 
-
 .content-article-list .article-list .item a {
-    word-wrap:break-word;
+    word-wrap: break-word;
 }
 
 .content-article-category {
@@ -273,9 +274,11 @@ body {
     margin-right: 5px;
     font-size: 1.15em;
 }
+
 .pagination a[display] {
     border: 0;
 }
+
 .pagination a[selected] {
     border: 0;
     color: gray;

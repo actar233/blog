@@ -26,12 +26,7 @@ public class MarkdownService {
 
     public boolean reload() {
         try {
-            List<Markdown> markdowns = loadMarkdowns();
-            Map<String, List<Markdown>> tags = generateTags(markdowns);
-            Map<String, Markdown> pathMapping = generatePathMapping(markdowns);
-            this.markdowns = markdowns;
-            this.tags = tags;
-            this.pathMapping = pathMapping;
+            load();
             return true;
         } catch (Exception e) {
             return false;

@@ -61,7 +61,7 @@ public class Markdown implements Comparable<Markdown> {
         return markdown;
     }
 
-    private static String markdown2HTML(String markdown){
+    private static String markdown2HTML(String markdown) {
         MutableDataSet options = new MutableDataSet();
         options.setFrom(ParserEmulationProfile.MARKDOWN);
         options.set(Parser.EXTENSIONS, Collections.singletonList(TablesExtension.create()));

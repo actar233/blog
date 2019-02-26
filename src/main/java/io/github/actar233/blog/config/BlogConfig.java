@@ -19,10 +19,10 @@ public class BlogConfig {
     @Getter
     private String token;
 
-    BlogConfig(){
-        properties=new Properties();
+    BlogConfig() {
+        properties = new Properties();
         File blog = new File("blog.properties");
-        if (blog.isFile()){
+        if (blog.isFile()) {
             try {
                 properties.load(new FileInputStream(blog));
                 load();
@@ -31,7 +31,7 @@ public class BlogConfig {
         }
     }
 
-    private void load(){
+    private void load() {
         git = properties.getProperty("git");
         token = properties.getProperty("token");
     }

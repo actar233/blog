@@ -61,7 +61,7 @@ public class ArticlesController {
 
             model.addAttribute("markdowns", markdowns);
             model.addAttribute("page", page);
-        }else{
+        } else {
             List<Markdown> markdowns = new ArrayList<>();
 
             model.addAttribute("markdowns", markdowns);

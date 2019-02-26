@@ -36,12 +36,12 @@ public class Page {
     }
 
     public boolean hasNextPage() {
-        if (count==0) return false;
+        if (count == 0) return false;
         return currentPage < countPage - 1;
     }
 
     public boolean hasLastPage() {
-        if (count==0) return false;
+        if (count == 0) return false;
         return currentPage > 0;
     }
 
