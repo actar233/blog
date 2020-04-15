@@ -19,6 +19,9 @@ public class BlogConfig {
     @Getter
     private String token;
 
+    @Getter
+    private String record;
+
     BlogConfig() {
         properties = new Properties();
         File blog = new File("blog.properties");
@@ -34,5 +37,6 @@ public class BlogConfig {
     private void load() {
         git = properties.getProperty("git");
         token = properties.getProperty("token");
+        record = properties.getProperty("record");
     }
 }

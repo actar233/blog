@@ -1,5 +1,6 @@
 package io.github.actar233.blog.controller;
 
+import io.github.actar233.blog.config.BlogConfig;
 import io.github.actar233.blog.utils.Markdown;
 import io.github.actar233.blog.service.MarkdownService;
 import io.github.actar233.blog.utils.Page;
@@ -17,9 +18,12 @@ public class TagsController {
 
     private final MarkdownService markdownService;
 
+    private final BlogConfig config;
+
     @Autowired
-    public TagsController(MarkdownService markdownService) {
+    public TagsController(MarkdownService markdownService, BlogConfig config) {
         this.markdownService = markdownService;
+        this.config = config;
     }
 
     @GetMapping("/tags")
@@ -28,6 +32,8 @@ public class TagsController {
         Set<String> tags = markdownService.tags.keySet();
 
         model.addAttribute("tags", tags);
+
+        model.addAttribute("record", config.getRecord());
 
         return "tags.html";
     }
@@ -57,6 +63,8 @@ public class TagsController {
                 return "/error/404.html";
             }
         }
+
+        model.addAttribute("record", config.getRecord());
 
         return "tag.html";
     }

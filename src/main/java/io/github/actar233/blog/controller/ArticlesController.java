@@ -1,5 +1,6 @@
 package io.github.actar233.blog.controller;
 
+import io.github.actar233.blog.config.BlogConfig;
 import io.github.actar233.blog.utils.Markdown;
 import io.github.actar233.blog.service.MarkdownService;
 import io.github.actar233.blog.utils.Page;
@@ -19,9 +20,12 @@ public class ArticlesController {
 
     private final MarkdownService markdownService;
 
+    private final BlogConfig config;
+
     @Autowired
-    public ArticlesController(MarkdownService markdownService) {
+    public ArticlesController(MarkdownService markdownService, BlogConfig config) {
         this.markdownService = markdownService;
+        this.config = config;
     }
 
     @GetMapping("/articles")
@@ -45,6 +49,8 @@ public class ArticlesController {
                 return "/error/404.html";
             }
         }
+
+        model.addAttribute("record", config.getRecord());
 
         return "articles.html";
     }
@@ -82,6 +88,9 @@ public class ArticlesController {
         }
         Markdown markdown = markdownService.pathMapping.get(uri);
         model.addAttribute("markdown", markdown.getHtml());
+
+        model.addAttribute("record", config.getRecord());
+
         return "article.html";
     }
 

@@ -1,5 +1,6 @@
 package io.github.actar233.blog.controller;
 
+import io.github.actar233.blog.config.BlogConfig;
 import io.github.actar233.blog.utils.Markdown;
 import io.github.actar233.blog.service.MarkdownService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,12 @@ public class DefaultController {
 
     private final MarkdownService markdownService;
 
+    private final BlogConfig config;
+
     @Autowired
-    public DefaultController(MarkdownService markdownService) {
+    public DefaultController(MarkdownService markdownService, BlogConfig config) {
         this.markdownService = markdownService;
+        this.config = config;
     }
 
     @GetMapping({"/", "/index.html"})
@@ -38,7 +42,15 @@ public class DefaultController {
 
         model.addAttribute("tags", tags);
 
+        model.addAttribute("record", config.getRecord());
+
         return "index.html";
+    }
+
+    @GetMapping("/links.html")
+    public String links(Model model) {
+        model.addAttribute("record", config.getRecord());
+        return "links.html";
     }
 
 }
