@@ -60,7 +60,7 @@ public class ArticlesController {
         int lave = page.count - page.currentPage * page.step;
 
         int from = page.currentPage * page.step;
-        int to = from + (lave > page.step ? page.step : lave);
+        int to = from + Math.min(page.step, lave);
 
         if (to > from) {
             List<Markdown> markdowns = markdownService.markdowns.subList(from, to);
