@@ -26,6 +26,8 @@ public class Markdown implements Comparable<Markdown> {
     private static Pattern titlePattern = Pattern.compile("\\[@Title]:<>\\((.*)\\)");
     private static Pattern datePattern = Pattern.compile("\\[@Date]:<>\\((.*)\\)");
     private static Pattern tagsPattern = Pattern.compile("\\[@Tags]:<>\\((.*)\\)");
+    private static Pattern keywordsPattern = Pattern.compile("\\[@Keywords]:<>\\((.*)\\)");
+    private static Pattern descriptionPattern = Pattern.compile("\\[@Description]:<>\\((.*)\\)");
 
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -33,6 +35,8 @@ public class Markdown implements Comparable<Markdown> {
     private String title;
     private Date date;
     private String[] tags;
+    private String keywords;
+    private String description;
     private String html;
 
     private String mapping;
@@ -58,6 +62,8 @@ public class Markdown implements Comparable<Markdown> {
         markdown.title = matcher(text, titlePattern, "Title");
         markdown.date = format.parse(matcher(text, datePattern, "Date"));
         markdown.tags = matcher(text, tagsPattern, "Tags").split(",");
+        markdown.keywords = matcher(text, keywordsPattern, "Keywords");
+        markdown.description = matcher(text, descriptionPattern, "Description");
         return markdown;
     }
 

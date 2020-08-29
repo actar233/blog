@@ -87,8 +87,10 @@ public class ArticlesController {
             return "/error/404.html";
         }
         Markdown markdown = markdownService.pathMapping.get(uri);
-        model.addAttribute("markdown", markdown.getHtml());
 
+        model.addAttribute("keywords", markdown.getKeywords());
+        model.addAttribute("description", markdown.getDescription());
+        model.addAttribute("markdown", markdown.getHtml());
         model.addAttribute("record", config.getRecord());
 
         return "article.html";
